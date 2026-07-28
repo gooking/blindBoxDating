@@ -1,0 +1,157 @@
+{
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"^uni-(.*)": "@/uni_modules/uni-$1/components/uni-$1/uni-$1.vue",
+			"^mp-html$": "@/uni_modules/mp-html/components/mp-html/mp-html.vue"
+		}
+	},
+	"pages": [
+		{
+			"path": "pages/start/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "发现",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/push/index",
+			"style": {
+				"navigationBarTitleText": "投放盲盒",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/user/index",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/unlock-logs/index",
+			"style": {
+				"navigationBarTitleText": "解锁记录",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/push-logs/index",
+			"style": {
+				"navigationBarTitleText": "投放记录",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/recharge/index",
+			"style": {
+				"navigationBarTitleText": "购买解锁次数",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/user/wallet",
+			"style": {
+				"navigationBarTitleText": "我的钱包",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/user/profile",
+			"style": {
+				"navigationBarTitleText": "编辑资料",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/user/setting",
+			"style": {
+				"navigationBarTitleText": "设置",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/user/security",
+			"style": {
+				"navigationBarTitleText": "账号安全",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/user/about",
+			"style": {
+				"navigationBarTitleText": "关于我们",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/user/sign",
+			"style": {
+				"navigationBarTitleText": "每日签到",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/user/recharge",
+			"style": {
+				"navigationBarTitleText": "余额充值",
+				"navigationStyle": "custom"
+			}
+		},
+
+		{
+			"path": "pages/agreement/agreement",
+			"style": {
+				"navigationBarTitleText": "用户协议"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "盲盒交友",
+		"navigationBarBackgroundColor": "#1a0533",
+		"backgroundColor": "#0d0118",
+		"backgroundTextStyle": "light"
+	},
+	"tabBar": {
+		"color": "#8b7aa0",
+		"selectedColor": "#d4a8ff",
+		"backgroundColor": "#1a0533",
+		"borderStyle": "black",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "发现",
+				"iconPath": "static/images/nav/tab-discover-off.png",
+				"selectedIconPath": "static/images/nav/tab-discover-on.png"
+			},
+			{
+				"pagePath": "pages/push/index",
+				"text": "投放",
+				"iconPath": "static/images/nav/tab-box-off.png",
+				"selectedIconPath": "static/images/nav/tab-box-on.png"
+			},
+			{
+				"pagePath": "pages/user/index",
+				"text": "我的",
+				"iconPath": "static/images/nav/tab-profile-off.png",
+				"selectedIconPath": "static/images/nav/tab-profile-on.png"
+			}
+		]
+	},
+	"uniIdRouter": {}
+}

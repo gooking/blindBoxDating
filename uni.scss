@@ -1,0 +1,102 @@
+// ====================================
+// 盲盒交友 - 高端暗紫金主题配色
+// ====================================
+
+// 主题色 - 神秘紫金
+$primary: #c084fc;
+$primary-light: #d4a8ff;
+$primary-dark: #9333ea;
+$primary-gradient: linear-gradient(135deg, #7c3aed 0%, #c084fc 50%, #f0abfc 100%);
+
+// 金色点缀
+$gold: #f5c842;
+$gold-light: #fde68a;
+$gold-dark: #d97706;
+$gold-gradient: linear-gradient(135deg, #d97706 0%, #f5c842 100%);
+
+// 辅助色
+$secondary: #ec4899;
+$success: #10b981;
+$warning: #f59e0b;
+$danger: #ef4444;
+$info: #6b7280;
+
+// 文字颜色
+$text-primary: #f0e6ff;
+$text-regular: #c4b5d4;
+$text-secondary: #8b7aa0;
+$text-placeholder: #5b4d6b;
+$text-white: #ffffff;
+
+// 背景色 - 深邃暗色
+$bg-base: #0d0118;
+$bg-card: #1a0533;
+$bg-card-light: #220a40;
+$bg-surface: #2d0f52;
+$bg-overlay: rgba(13, 1, 24, 0.85);
+
+// 边框
+$border-color: rgba(192, 132, 252, 0.2);
+$border-light: rgba(192, 132, 252, 0.1);
+$border-gold: rgba(245, 200, 66, 0.3);
+
+// 间距
+$spacing-xs: 8rpx;
+$spacing-sm: 16rpx;
+$spacing-md: 24rpx;
+$spacing-lg: 32rpx;
+$spacing-xl: 48rpx;
+$spacing-xxl: 64rpx;
+
+// 圆角
+$radius-sm: 8rpx;
+$radius-md: 16rpx;
+$radius-lg: 24rpx;
+$radius-xl: 32rpx;
+$radius-xxl: 48rpx;
+$radius-round: 9999rpx;
+
+// 字体大小
+$font-xs: 20rpx;
+$font-sm: 24rpx;
+$font-md: 28rpx;
+$font-lg: 32rpx;
+$font-xl: 36rpx;
+$font-xxl: 44rpx;
+$font-hero: 56rpx;
+
+// 阴影
+$shadow-sm: 0 2rpx 12rpx rgba(120, 60, 200, 0.15);
+$shadow-md: 0 4rpx 24rpx rgba(120, 60, 200, 0.25);
+$shadow-lg: 0 8rpx 40rpx rgba(120, 60, 200, 0.35);
+$shadow-gold: 0 4rpx 20rpx rgba(245, 200, 66, 0.3);
+$shadow-glow: 0 0 30rpx rgba(192, 132, 252, 0.4);
+
+// 常用混合
+@mixin glass-card {
+  background: rgba(34, 10, 64, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1rpx solid $border-color;
+  border-radius: $radius-xl;
+}
+
+@mixin gold-text {
+  background: $gold-gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@mixin purple-btn {
+  background: $primary-gradient;
+  border-radius: $radius-round;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: $shadow-md;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
