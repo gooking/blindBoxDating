@@ -2,8 +2,8 @@
     "name" : "天使童装WEB",
     "appid" : "__UNI__AD603C4",
     "description" : "天使童装WEB",
-    "versionName" : "26.4.20",
-    "versionCode" : 260420,
+    "versionName" : "26.9.29",
+    "versionCode" : 260929,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
@@ -79,7 +79,7 @@
         "sdkConfigs" : {
             "maps" : {}
         },
-        "title" : "天使童装WEB",
+        "title" : "盲盒交友",
         "router" : {
             "mode" : "history"
         }

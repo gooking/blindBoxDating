@@ -29,6 +29,13 @@
 			}
 		},
 		{
+			"path": "pages/drift-bottle/index",
+			"style": {
+				"navigationBarTitleText": "漂流瓶",
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"path": "pages/user/index",
 			"style": {
 				"navigationBarTitleText": "我的",
@@ -144,6 +151,12 @@
 				"text": "投放",
 				"iconPath": "static/images/nav/tab-box-off.png",
 				"selectedIconPath": "static/images/nav/tab-box-on.png"
+			},
+			{
+				"pagePath": "pages/drift-bottle/index",
+				"text": "漂流瓶",
+				"iconPath": "static/images/nav/tab-bottle-off.png",
+				"selectedIconPath": "static/images/nav/tab-bottle-on.png"
 			},
 			{
 				"pagePath": "pages/user/index",

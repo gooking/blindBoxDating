@@ -209,14 +209,60 @@ function drawPerson(c, [r, g, b]) {
   c.line(CX - shoulderW, bodyBottom, CX + shoulderW, bodyBottom, W, r, g, b)
 }
 
+/**
+ * 漂流瓶（漂流瓶页）
+ * 瓶身轮廓 + 瓶颈 + 软木塞 + 瓶内两条信纸线
+ *
+ * 垂直布局（y）：
+ *   软木塞  y = 9  ~ 16
+ *   瓶颈    y = 16 ~ 27
+ *   肩部    y = 27 ~ 36 (斜线)
+ *   瓶身    y = 36 ~ 55 (直身段)
+ *   底弧    圆心 y = 55, r = 19 → 底边 y = 74
+ *   整体中心 ≈ (9+74)/2 = 41.5 ≈ CY ✓
+ */
+function drawBottle(c, [r, g, b]) {
+  const W = 3.2
+
+  // 瓶身底部弧（下半圆）
+  c.arc(CX, 55, 19, 0, Math.PI, W, r, g, b)
+
+  // 瓶身两侧竖线
+  c.line(CX - 19, 36, CX - 19, 55, W, r, g, b)
+  c.line(CX + 19, 36, CX + 19, 55, W, r, g, b)
+
+  // 肩部斜线
+  c.line(CX - 19, 36, CX - 8, 27, W, r, g, b)
+  c.line(CX + 19, 36, CX + 8, 27, W, r, g, b)
+
+  // 瓶颈
+  c.line(CX - 8, 16, CX - 8, 27, W, r, g, b)
+  c.line(CX + 8, 16, CX + 8, 27, W, r, g, b)
+
+  // 瓶口横线
+  c.line(CX - 8, 16, CX + 8, 16, W, r, g, b)
+
+  // 软木塞（略宽于瓶颈的矩形）
+  c.line(CX - 10, 9,  CX + 10, 9,  W, r, g, b)   // 塞顶
+  c.line(CX - 10, 16, CX + 10, 16, W, r, g, b)   // 塞底（与瓶口重合）
+  c.line(CX - 10, 9,  CX - 10, 16, W, r, g, b)   // 塞左
+  c.line(CX + 10, 9,  CX + 10, 16, W, r, g, b)   // 塞右
+
+  // 瓶内信纸（两条短横线，暗示装着信件）
+  c.line(CX - 11, 43, CX + 11, 43, W * 0.75, r, g, b)
+  c.line(CX - 8,  50, CX + 8,  50, W * 0.75, r, g, b)
+}
+
 // ─── 生成 ────────────────────────────────────────────────
 const icons = [
-  { name: 'tab-discover-off', fn: drawHeart,    color: COLOR_OFF },
-  { name: 'tab-discover-on',  fn: drawHeart,    color: COLOR_ON  },
-  { name: 'tab-box-off',      fn: drawGiftBox,  color: COLOR_OFF },
-  { name: 'tab-box-on',       fn: drawGiftBox,  color: COLOR_ON  },
-  { name: 'tab-profile-off',  fn: drawPerson,   color: COLOR_OFF },
-  { name: 'tab-profile-on',   fn: drawPerson,   color: COLOR_ON  },
+  { name: 'tab-discover-off',  fn: drawHeart,    color: COLOR_OFF },
+  { name: 'tab-discover-on',   fn: drawHeart,    color: COLOR_ON  },
+  { name: 'tab-box-off',       fn: drawGiftBox,  color: COLOR_OFF },
+  { name: 'tab-box-on',        fn: drawGiftBox,  color: COLOR_ON  },
+  { name: 'tab-bottle-off',    fn: drawBottle,   color: COLOR_OFF },
+  { name: 'tab-bottle-on',     fn: drawBottle,   color: COLOR_ON  },
+  { name: 'tab-profile-off',   fn: drawPerson,   color: COLOR_OFF },
+  { name: 'tab-profile-on',    fn: drawPerson,   color: COLOR_ON  },
 ]
 
 fs.mkdirSync(OUT_DIR, { recursive: true })

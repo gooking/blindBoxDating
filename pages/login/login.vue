@@ -49,6 +49,25 @@
         />
       </view>
 
+      <!-- 图形验证码 -->
+      <view class="input-wrap">
+        <text class="input-icon">🔒</text>
+        <input
+          class="form-input"
+          type="number"
+          v-model="picCode"
+          placeholder="请输入图形验证码"
+          placeholder-class="ph"
+          maxlength="6"
+        />
+        <image
+          class="pic-code-img"
+          :src="picCodeUrl"
+          mode="heightFix"
+          @click="refreshPicCode"
+        />
+      </view>
+
       <!-- 验证码输入 -->
       <view class="input-wrap">
         <text class="input-icon">🔐</text>
@@ -122,6 +141,9 @@ export default {
       countdown: 0,
       timer: null,
       logging: false,
+      picKey: '',
+      picCode: '',
+      picCodeUrl: '',
       quickLogging: false,
       canBack: false,
       agreed: false,       // 协议勾选状态，默认不勾
@@ -133,6 +155,9 @@ export default {
     this.navBarHeight = nav.navBarHeight
     const pages = getCurrentPages()
     this.canBack = pages.length > 1
+    // #ifdef H5
+    this.refreshPicCode()
+    // #endif
   },
   onUnload() {
     if (this.timer) clearInterval(this.timer)
@@ -141,6 +166,14 @@ export default {
     toggleAgreed() {
       this.agreed = !this.agreed
     },
+    // #ifdef H5
+    // 生成/刷新图形验证码
+    refreshPicCode() {
+      this.picKey = Math.random().toString(36).slice(2, 10) + Date.now()
+      this.picCodeUrl = this.$wxapi.graphValidateCodeUrl(this.picKey)
+      this.picCode = ''
+    },
+    // #endif
     // 检查是否已同意协议
     checkAgreed() {
       if (!this.agreed) {
@@ -156,9 +189,13 @@ export default {
         uni.showToast({ title: '请输入正确的手机号', icon: 'none' })
         return
       }
+      if (!this.picCode) {
+        uni.showToast({ title: '请输入图形验证码', icon: 'none' })
+        return
+      }
       if (!this.checkAgreed()) return
       uni.showLoading({ title: '发送中...' })
-      const res = await this.$wxapi.smsValidateCode(this.mobile)
+      const res = await this.$wxapi.smsValidateCode(this.mobile, this.picKey, this.picCode)
       uni.hideLoading()
       if (res.code === 0) {
         uni.showToast({ title: '验证码已发送', icon: 'success' })
@@ -172,6 +209,8 @@ export default {
         }, 1000)
       } else {
         uni.showToast({ title: res.msg || '发送失败', icon: 'none' })
+        // 发送失败（含图形验证码错误），自动刷新图形验证码
+        this.refreshPicCode()
       }
     },
     async doLogin() {
@@ -395,6 +434,15 @@ export default {
   border-radius: 9999rpx;
   white-space: nowrap;
   &.disabled { color: #5b4d6b; border-color: rgba(192, 132, 252, 0.15); }
+}
+
+.pic-code-img {
+  flex-shrink: 0;
+  width: 0;
+  height: 64rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 /* 验证码登录按钮 */

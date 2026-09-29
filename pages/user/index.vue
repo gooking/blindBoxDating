@@ -126,6 +126,11 @@
         </view>
       </view>
 
+      <!-- 退出登录 -->
+      <view class="logout-wrap" v-if="token">
+        <view class="logout-btn" @click="logout">退出登录</view>
+      </view>
+
       <view class="bottom-safe"></view>
     </scroll-view>
   </view>
@@ -196,6 +201,33 @@ export default {
     },
     goSetting() { uni.navigateTo({ url: '/pages/user/setting' }) },
     goAbout() { uni.navigateTo({ url: '/pages/user/about' }) },
+    async logout() {
+      uni.showModal({
+        title: '退出登录',
+        content: '确定要退出当前账号吗？',
+        confirmText: '退出',
+        confirmColor: '#ec4899',
+        cancelText: '取消',
+        success: async ({ confirm }) => {
+          if (!confirm) return
+          uni.showLoading({ title: '退出中...' })
+          const res = await this.$wxapi.loginout(this.token)
+          uni.hideLoading()
+          // 无论接口成功与否，都清除本地登录态
+          this.vuex('token', '')
+          this.vuex('uid', '')
+          this.vuex('mobile', '')
+          this.userInfo = null
+          this.balance = { pullTimes: 0, pushTimes: 0 }
+          this.unlockCount = 0
+          if (res.code !== 0) {
+            uni.showToast({ title: res.msg || '退出失败，已强制登出', icon: 'none' })
+          } else {
+            uni.showToast({ title: '已退出登录', icon: 'success' })
+          }
+        }
+      })
+    },
   }
 }
 </script>
@@ -359,4 +391,25 @@ export default {
 }
 
 .bottom-safe { height: 40rpx; }
+
+.logout-wrap {
+  padding: 8rpx 0 24rpx;
+  display: flex;
+  justify-content: center;
+}
+.logout-btn {
+  width: 100%;
+  height: 96rpx;
+  background: rgba(236, 72, 153, 0.08);
+  border: 1rpx solid rgba(236, 72, 153, 0.3);
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #ec4899;
+  letter-spacing: 2rpx;
+  &:active { background: rgba(236, 72, 153, 0.16); }
+}
 </style>
